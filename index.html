@@ -1,0 +1,426 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width">
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <link rel="stylesheet" href="css/leaflet.css"><link rel="stylesheet" href="css/L.Control.Locate.min.css">
+        <link rel="stylesheet" href="css/qgis2web.css"><link rel="stylesheet" href="css/fontawesome-all.min.css">
+        <link rel="stylesheet" href="css/leaflet-measure.css">
+        <style>
+        html, body, #map {
+            width: 100%;
+            height: 100%;
+            padding: 0;
+            margin: 0;
+        }
+        </style>
+        <title></title>
+    </head>
+    <body>
+        <div id="map">
+        </div>
+        <script src="js/qgis2web_expressions.js"></script>
+        <script src="js/leaflet.js"></script><script src="js/L.Control.Locate.min.js"></script>
+        <script src="js/leaflet.rotatedMarker.js"></script>
+        <script src="js/leaflet.pattern.js"></script>
+        <script src="js/leaflet-hash.js"></script>
+        <script src="js/Autolinker.min.js"></script>
+        <script src="js/rbush.min.js"></script>
+        <script src="js/labelgun.min.js"></script>
+        <script src="js/labels.js"></script>
+        <script src="js/leaflet-measure.js"></script>
+        <script src="data/Kolmiomittausketju_1.js"></script>
+        <script src="data/Ketjunpisteet_2.js"></script>
+        <script src="data/Reitti_3.js"></script>
+        <script src="data/Tiekohteeseenkopio_4.js"></script>
+        <script src="data/Pisteet_5.js"></script>
+        <script src="data/Vaarannimi_6.js"></script>
+        <script>
+        var map = L.map('map', {
+            zoomControl:true, maxZoom:28, minZoom:1
+        }).fitBounds([[66.562600331835,24.072412762767684],[66.5872337883634,24.16515544298288]]);
+        var hash = new L.Hash(map);
+        map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>');
+        var autolinker = new Autolinker({truncate: {length: 30, location: 'smart'}});
+        L.control.locate({locateOptions: {maxZoom: 19}}).addTo(map);
+        var measureControl = new L.Control.Measure({
+            position: 'topleft',
+            primaryLengthUnit: 'meters',
+            secondaryLengthUnit: 'kilometers',
+            primaryAreaUnit: 'sqmeters',
+            secondaryAreaUnit: 'hectares'
+        });
+        measureControl.addTo(map);
+        document.getElementsByClassName('leaflet-control-measure-toggle')[0]
+        .innerHTML = '';
+        document.getElementsByClassName('leaflet-control-measure-toggle')[0]
+        .className += ' fas fa-ruler';
+        var bounds_group = new L.featureGroup([]);
+        function setBounds() {
+        }
+        map.createPane('pane_ESRITopo_0');
+        map.getPane('pane_ESRITopo_0').style.zIndex = 400;
+        var layer_ESRITopo_0 = L.tileLayer('https://services.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}', {
+            pane: 'pane_ESRITopo_0',
+            opacity: 1.0,
+            attribution: '',
+            minZoom: 1,
+            maxZoom: 28,
+            minNativeZoom: 0,
+            maxNativeZoom: 20
+        });
+        layer_ESRITopo_0;
+        map.addLayer(layer_ESRITopo_0);
+        function pop_Kolmiomittausketju_1(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['id'] !== null ? autolinker.link(feature.properties['id'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Nimi'] !== null ? autolinker.link(feature.properties['Nimi'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_Kolmiomittausketju_1_0() {
+            return {
+                pane: 'pane_Kolmiomittausketju_1',
+                opacity: 1,
+                color: 'rgba(137,137,137,1.0)',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                weight: 1.0,
+                fillOpacity: 0,
+                interactive: false,
+            }
+        }
+        map.createPane('pane_Kolmiomittausketju_1');
+        map.getPane('pane_Kolmiomittausketju_1').style.zIndex = 401;
+        map.getPane('pane_Kolmiomittausketju_1').style['mix-blend-mode'] = 'normal';
+        var layer_Kolmiomittausketju_1 = new L.geoJson(json_Kolmiomittausketju_1, {
+            attribution: '',
+            interactive: false,
+            dataVar: 'json_Kolmiomittausketju_1',
+            layerName: 'layer_Kolmiomittausketju_1',
+            pane: 'pane_Kolmiomittausketju_1',
+            onEachFeature: pop_Kolmiomittausketju_1,
+            style: style_Kolmiomittausketju_1_0,
+        });
+        bounds_group.addLayer(layer_Kolmiomittausketju_1);
+        map.addLayer(layer_Kolmiomittausketju_1);
+        function pop_Ketjunpisteet_2(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['id'] !== null ? autolinker.link(feature.properties['id'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Tiedot'] !== null ? autolinker.link(feature.properties['Tiedot'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_Ketjunpisteet_2_0() {
+            return {
+                pane: 'pane_Ketjunpisteet_2',
+                radius: 4.0,
+                opacity: 1,
+                color: 'rgba(255,255,255,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 2.0,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(147,20,27,1.0)',
+                interactive: false,
+            }
+        }
+        map.createPane('pane_Ketjunpisteet_2');
+        map.getPane('pane_Ketjunpisteet_2').style.zIndex = 402;
+        map.getPane('pane_Ketjunpisteet_2').style['mix-blend-mode'] = 'normal';
+        var layer_Ketjunpisteet_2 = new L.geoJson(json_Ketjunpisteet_2, {
+            attribution: '',
+            interactive: false,
+            dataVar: 'json_Ketjunpisteet_2',
+            layerName: 'layer_Ketjunpisteet_2',
+            pane: 'pane_Ketjunpisteet_2',
+            onEachFeature: pop_Ketjunpisteet_2,
+            pointToLayer: function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.circleMarker(latlng, style_Ketjunpisteet_2_0(feature));
+            },
+        });
+        bounds_group.addLayer(layer_Ketjunpisteet_2);
+        map.addLayer(layer_Ketjunpisteet_2);
+        function pop_Reitti_3(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['id'] !== null ? autolinker.link(feature.properties['id'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>Pituus</strong><br />' + (feature.properties['Pituus'] !== null ? autolinker.link(feature.properties['Pituus'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Lisätietoa'] !== null ? autolinker.link(feature.properties['Lisätietoa'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_Reitti_3_0() {
+            return {
+                pane: 'pane_Reitti_3',
+                opacity: 1,
+                color: 'rgba(147,20,26,1.0)',
+                dashArray: '',
+                lineCap: 'round',
+                lineJoin: 'round',
+                weight: 4.0,
+                fillOpacity: 0,
+                interactive: false,
+            }
+        }
+        map.createPane('pane_Reitti_3');
+        map.getPane('pane_Reitti_3').style.zIndex = 403;
+        map.getPane('pane_Reitti_3').style['mix-blend-mode'] = 'normal';
+        var layer_Reitti_3 = new L.geoJson(json_Reitti_3, {
+            attribution: '',
+            interactive: false,
+            dataVar: 'json_Reitti_3',
+            layerName: 'layer_Reitti_3',
+            pane: 'pane_Reitti_3',
+            onEachFeature: pop_Reitti_3,
+            style: style_Reitti_3_0,
+        });
+        bounds_group.addLayer(layer_Reitti_3);
+        map.addLayer(layer_Reitti_3);
+        function pop_Tiekohteeseenkopio_4(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['id'] !== null ? autolinker.link(feature.properties['id'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Tiedot'] !== null ? autolinker.link(feature.properties['Tiedot'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Lisätietoa'] !== null ? autolinker.link(feature.properties['Lisätietoa'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_Tiekohteeseenkopio_4_0() {
+            return {
+                pane: 'pane_Tiekohteeseenkopio_4',
+                opacity: 1,
+                color: 'rgba(62,118,118,1.0)',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                weight: 3.0,
+                fillOpacity: 0,
+                interactive: false,
+            }
+        }
+        map.createPane('pane_Tiekohteeseenkopio_4');
+        map.getPane('pane_Tiekohteeseenkopio_4').style.zIndex = 404;
+        map.getPane('pane_Tiekohteeseenkopio_4').style['mix-blend-mode'] = 'normal';
+        var layer_Tiekohteeseenkopio_4 = new L.geoJson(json_Tiekohteeseenkopio_4, {
+            attribution: '',
+            interactive: false,
+            dataVar: 'json_Tiekohteeseenkopio_4',
+            layerName: 'layer_Tiekohteeseenkopio_4',
+            pane: 'pane_Tiekohteeseenkopio_4',
+            onEachFeature: pop_Tiekohteeseenkopio_4,
+            style: style_Tiekohteeseenkopio_4_0,
+        });
+        bounds_group.addLayer(layer_Tiekohteeseenkopio_4);
+        map.addLayer(layer_Tiekohteeseenkopio_4);
+        function pop_Pisteet_5(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['id'] !== null ? autolinker.link(feature.properties['id'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Kohde'] !== null ? autolinker.link(feature.properties['Kohde'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Lisätietoa'] !== null ? autolinker.link(feature.properties['Lisätietoa'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_Pisteet_5_0() {
+            return {
+                pane: 'pane_Pisteet_5',
+                radius: 8.0,
+                opacity: 1,
+                color: 'rgba(255,255,255,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 2.0,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(0,0,0,1.0)',
+                interactive: false,
+            }
+        }
+        map.createPane('pane_Pisteet_5');
+        map.getPane('pane_Pisteet_5').style.zIndex = 405;
+        map.getPane('pane_Pisteet_5').style['mix-blend-mode'] = 'normal';
+        var layer_Pisteet_5 = new L.geoJson(json_Pisteet_5, {
+            attribution: '',
+            interactive: false,
+            dataVar: 'json_Pisteet_5',
+            layerName: 'layer_Pisteet_5',
+            pane: 'pane_Pisteet_5',
+            onEachFeature: pop_Pisteet_5,
+            pointToLayer: function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.circleMarker(latlng, style_Pisteet_5_0(feature));
+            },
+        });
+        bounds_group.addLayer(layer_Pisteet_5);
+        map.addLayer(layer_Pisteet_5);
+        function pop_Vaarannimi_6(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['id'] !== null ? autolinker.link(feature.properties['id'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Tiedot</th>\
+                        <td>' + (feature.properties['Tiedot'] !== null ? autolinker.link(feature.properties['Tiedot'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_Vaarannimi_6_0() {
+            return {
+                pane: 'pane_Vaarannimi_6',
+                radius: 0.0,
+                opacity: 1,
+                color: 'rgba(0,0,0,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 2.0,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(255,255,255,1.0)',
+                interactive: false,
+            }
+        }
+        map.createPane('pane_Vaarannimi_6');
+        map.getPane('pane_Vaarannimi_6').style.zIndex = 406;
+        map.getPane('pane_Vaarannimi_6').style['mix-blend-mode'] = 'normal';
+        var layer_Vaarannimi_6 = new L.geoJson(json_Vaarannimi_6, {
+            attribution: '',
+            interactive: false,
+            dataVar: 'json_Vaarannimi_6',
+            layerName: 'layer_Vaarannimi_6',
+            pane: 'pane_Vaarannimi_6',
+            onEachFeature: pop_Vaarannimi_6,
+            pointToLayer: function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.circleMarker(latlng, style_Vaarannimi_6_0(feature));
+            },
+        });
+        bounds_group.addLayer(layer_Vaarannimi_6);
+        map.addLayer(layer_Vaarannimi_6);
+        setBounds();
+        var i = 0;
+        layer_Ketjunpisteet_2.eachLayer(function(layer) {
+            var context = {
+                feature: layer.feature,
+                variables: {}
+            };
+            layer.bindTooltip((layer.feature.properties['Tiedot'] !== null?String('<div style="color: #323232; font-size: 12pt; font-family: \'Noto Sans\', sans-serif;">' + layer.feature.properties['Tiedot']) + '</div>':''), {permanent: true, offset: [-0, -16], className: 'css_Ketjunpisteet_2'});
+            labels.push(layer);
+            totalMarkers += 1;
+              layer.added = true;
+              addLabel(layer, i);
+              i++;
+        });
+        var i = 0;
+        layer_Reitti_3.eachLayer(function(layer) {
+            var context = {
+                feature: layer.feature,
+                variables: {}
+            };
+            layer.bindTooltip((layer.feature.properties['Pituus'] !== null?String('<div style="color: #93141a; font-size: 14pt; font-weight: bold; font-family: \'Noto Sans\', sans-serif;">' + layer.feature.properties['Pituus']) + '</div>':''), {permanent: true, offset: [-0, -16], className: 'css_Reitti_3'});
+            labels.push(layer);
+            totalMarkers += 1;
+              layer.added = true;
+              addLabel(layer, i);
+              i++;
+        });
+        var i = 0;
+        layer_Tiekohteeseenkopio_4.eachLayer(function(layer) {
+            var context = {
+                feature: layer.feature,
+                variables: {}
+            };
+            layer.bindTooltip((layer.feature.properties['Tiedot'] !== null?String('<div style="color: #323232; font-size: 14pt; font-family: \'Noto Sans\', sans-serif;">' + layer.feature.properties['Tiedot']) + '</div>':''), {permanent: true, offset: [-0, -16], className: 'css_Tiekohteeseenkopio_4'});
+            labels.push(layer);
+            totalMarkers += 1;
+              layer.added = true;
+              addLabel(layer, i);
+              i++;
+        });
+        var i = 0;
+        layer_Pisteet_5.eachLayer(function(layer) {
+            var context = {
+                feature: layer.feature,
+                variables: {}
+            };
+            layer.bindTooltip((layer.feature.properties['Kohde'] !== null?String('<div style="color: #323232; font-size: 14pt; font-weight: bold; font-family: \'Noto Sans\', sans-serif;">' + layer.feature.properties['Kohde']) + '</div>':''), {permanent: true, offset: [-0, -16], className: 'css_Pisteet_5'});
+            labels.push(layer);
+            totalMarkers += 1;
+              layer.added = true;
+              addLabel(layer, i);
+              i++;
+        });
+        var i = 0;
+        layer_Vaarannimi_6.eachLayer(function(layer) {
+            var context = {
+                feature: layer.feature,
+                variables: {}
+            };
+            layer.bindTooltip((layer.feature.properties['Tiedot'] !== null?String('<div style="color: #323232; font-size: 18pt; font-weight: bold; font-family: \'Noto Sans\', sans-serif;">' + layer.feature.properties['Tiedot']) + '</div>':''), {permanent: true, offset: [-0, -16], className: 'css_Vaarannimi_6'});
+            labels.push(layer);
+            totalMarkers += 1;
+              layer.added = true;
+              addLabel(layer, i);
+              i++;
+        });
+        resetLabels([layer_Ketjunpisteet_2,layer_Reitti_3,layer_Tiekohteeseenkopio_4,layer_Pisteet_5,layer_Vaarannimi_6]);
+        map.on("zoomend", function(){
+            resetLabels([layer_Ketjunpisteet_2,layer_Reitti_3,layer_Tiekohteeseenkopio_4,layer_Pisteet_5,layer_Vaarannimi_6]);
+        });
+        map.on("layeradd", function(){
+            resetLabels([layer_Ketjunpisteet_2,layer_Reitti_3,layer_Tiekohteeseenkopio_4,layer_Pisteet_5,layer_Vaarannimi_6]);
+        });
+        map.on("layerremove", function(){
+            resetLabels([layer_Ketjunpisteet_2,layer_Reitti_3,layer_Tiekohteeseenkopio_4,layer_Pisteet_5,layer_Vaarannimi_6]);
+        });
+        </script>
+    </body>
+</html>

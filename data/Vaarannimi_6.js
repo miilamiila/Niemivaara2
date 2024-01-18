@@ -1,0 +1,1 @@
+var json_Vaarannimi_6 = {"type":"FeatureCollection","name":"Vaarannimi_6","crs":{"type":"name","properties":{"name":"urn:ogc:def:crs:OGC:1.3:CRS84"}},"features":[{"type":"Feature","properties":{"id":"1","Tiedot":"NIEMIVAARA"},"geometry":{"type":"Point","coordinates":[24.128791214963886,66.579340081214994]}}]}
